@@ -1,21 +1,21 @@
 README
 
-## From Steyn
+## From Rachel
 
-Relevant files: `Google+Search.ipynb`, `Google+Search.md`
+API NEWS APPROACH
 
-Currently you have to manually add the search string and it writes results to a file and appends it after each search
+Towards the end of the evening I realised everyone had given up on using APIs for news searching and were using RSS instead. There seemed to be some issues with RSS so I had a quick play with Bing News API instead.
 
-What still needs to be done, I will be able to work on this again from then 10th of July
-1. Put in a loop to read each search string form a text file, then the whole process is automated and you basically receive everything within a few seconds
-2. I tested with pdfkit to make pdf of the resulting urls, this could be an alternative to scraping. The code works but it takes a lot of time to then run a singe search if it writes out pdf during the search. What would be better is once the full list is available have a separate process to generate pdfs from the provided links. This could partly address the problem with the posting that does not follow the same structure.
-3. What would be useful if there as specific terms coming up with the job posting we that could be added to the search strings.
-4. I have not cleaned up the list yet, there may be duplicates.
+In the attached notebook there's just a proof of concept where I grab 100 news articles that mention one of the detention centres. Obviously it can easily be scaled up to loop through multiple centres. And I haven't tested how many articles we can grab at a time. The most I tried was 100.
 
-An alternative would be to use the generated list directly in a webscraping script as well.
+I'm not sure (yet) how to make it do a precise match, but I'm sure it's possible.
 
-Any suggestion welcome, I hope this could help in some form.
+The code as written outputs the descriptions only, but it's returning a search_results object that can be queried for e.g. url, date, headline and other elements.
 
-## From 
+It's using a trial API key that should work for 7 days. After that someone else can get a new trial key I guess.
+
+ALTERNATIVE APPROACH:
+I'm also attaching a fuzzy matching python script that Patrick wrote. The idea is to run that on the results of the RSS grabbing code that the others wrote. Their RSS code gets all news articles, not just the ones with our keywords in them. So then you run Patrick's script on the results to find the relevant articles. I think this approach may not work so great (yet) because it is only returning headlines, not any further text.
+
 
 
