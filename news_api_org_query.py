@@ -15,15 +15,16 @@ import csv # to write to file
 # and especially: https://newsapi.org/docs/endpoints/everything
 # doc recommends using HTTP headers instead of querystring parameters, but IDK how
 
-key = "f9c1545dd5f84fc0ac45308b845bab68"
+key = "f9c1545dd5f84fc0ac45308b845bab68" # get at https://newsapi.org/register
 base_url = "https://newsapi.org/v2/everything"
 
 # Search paramters
 # q obviously needs refining; see API documentation
 search_params = {"q": '"detention+center"',
                  "apiKey": key,
-                 "from": "2018-05-01",
-                 "pageSize": "100"
+                 "from": "2018-05-01", # "this API only includes articles up to a month old!!!"
+                 # "to" by default is as recent as API plan allows (15 min ago for free)
+                 "pageSize": "100" # maximum possible, to cut down on num of requests
                 }
 
 # Initial request to see hwo many hits there will be before querying page by page
@@ -36,7 +37,7 @@ initial_data = json.loads(request.text)
 hits = initial_data['totalResults']
 print("number of hits:", str(hits))
 
-# How many pages of results? (NYTimes gives 10 results per page)
+# How many pages of results?
 # necessary in order to loop through pages of results later
 pages = int(math.ceil(hits/100))
 print("number of pages: ", str(pages))
